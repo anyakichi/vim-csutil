@@ -34,7 +34,7 @@ nnoremap <unique> <script> <Plug>(csutil-find-e)
 nnoremap <unique> <script> <Plug>(csutil-find-f)
 \	 :<C-u>call csutil#find('<cfile>', 'f')<CR>
 nnoremap <unique> <script> <Plug>(csutil-find-i)
-\	 :<C-u>call csutil#find('<cfile>', 'i', '', 1)<CR>
+\	 :<C-u>call csutil#find('<cfile>', 'i')<CR>
 
 nnoremap <unique> <script> <Plug>(csutil-s-find-s)
 \	 :<C-u>call csutil#find('<cword>', 's', 's')<CR>
