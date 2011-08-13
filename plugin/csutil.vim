@@ -75,13 +75,14 @@ if !exists('g:csutil_map_prefix')
 endif
 
 if !exists("g:csutil_no_mappings") || !g:csutil_no_mappings
-    let mapping = g:csutil_map_prefix . g:csutil_map_prefix
-    silent! execute 'nmap' '<unique>' mapping '<Plug>(csutil-toggle-csto)'
-    for type in ['s', 'g', 'd', 'c', 't', 'e', 'f', 'i']
-	let mapping = g:csutil_map_prefix . type
-	let target = '<Plug>(csutil-find-' . type . ')'
-	silent! execute 'nmap' '<unique>' mapping target
+    let s:mapping = g:csutil_map_prefix . g:csutil_map_prefix
+    silent! execute 'nmap' '<unique>' s:mapping '<Plug>(csutil-toggle-csto)'
+    for s:type in ['s', 'g', 'd', 'c', 't', 'e', 'f', 'i']
+	let s:mapping = g:csutil_map_prefix . s:type
+	let s:target = '<Plug>(csutil-find-' . s:type . ')'
+	silent! execute 'nmap' '<unique>' s:mapping s:target
     endfor
+    unlet s:type s:mapping s:target
 endif
 
 augroup csutil
