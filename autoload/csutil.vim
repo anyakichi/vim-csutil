@@ -10,11 +10,11 @@ let s:csutil_db = ""
 function! s:execute(...)
     let cmd = join(a:000, ' ')
     try
-	execute cmd
+        execute cmd
     catch
-	echohl ErrorMsg
-	echo substitute(v:exception, '^Vim\%((\a\+)\)\=:', '', '')
-	echohl None
+        echohl ErrorMsg
+        echo substitute(v:exception, '^Vim\%((\a\+)\)\=:', '', '')
+        echohl None
     endtry
 endfunction
 
@@ -24,18 +24,18 @@ function! csutil#setup()
     let cscope_db = findfile(cscope_file, ".;")
 
     if s:csutil_db == cscope_db
-	return
+        return
     endif
 
     let csverb_save = &csverb
     set nocsverb
 
     if s:csutil_db != ''
-	execute 'cscope' 'kill' s:csutil_db
+        execute 'cscope' 'kill' s:csutil_db
     endif
 
     if cscope_db != ''
-	execute 'cscope' 'add' cscope_db
+        execute 'cscope' 'add' cscope_db
     endif
 
     let &csverb = csverb_save
@@ -47,10 +47,10 @@ function! csutil#find(expr, type, ...)
     let key = expand(a:expr)
 
     if key == ''
-	echohl ErrorMsg
-	echo 'E349: No identifier under cursor'
-	echohl None
-	return
+        echohl ErrorMsg
+        echo 'E349: No identifier under cursor'
+        echohl None
+        return
     endif
 
     call s:execute(prefix . 'cscope', 'find', a:type, key)
