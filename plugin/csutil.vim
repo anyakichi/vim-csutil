@@ -35,6 +35,8 @@ nnoremap <unique> <script> <Plug>(csutil-find-f)
 \        :<C-u>call csutil#find('<cfile>', 'f')<CR>
 nnoremap <unique> <script> <Plug>(csutil-find-i)
 \        :<C-u>call csutil#find('<cfile>', 'i')<CR>
+nnoremap <unique> <script> <Plug>(csutil-find-a)
+\        :<C-u>call csutil#find('<cfile>', 'a')<CR>
 
 nnoremap <unique> <script> <Plug>(csutil-s-find-s)
 \        :<C-u>call csutil#find('<cword>', 's', 's')<CR>
@@ -52,6 +54,8 @@ nnoremap <unique> <script> <Plug>(csutil-s-find-f)
 \        :<C-u>call csutil#find('<cfile>', 'f', 's')<CR>
 nnoremap <unique> <script> <Plug>(csutil-s-find-i)
 \        :<C-u>call csutil#find('<cfile>', 'i', 's')<CR>
+nnoremap <unique> <script> <Plug>(csutil-s-find-a)
+\        :<C-u>call csutil#find('<cfile>', 'a', 's')<CR>
 
 nnoremap <unique> <script> <Plug>(csutil-l-find-s)
 \        :<C-u>call csutil#find('<cword>', 's', 'l')<CR>
@@ -68,7 +72,9 @@ nnoremap <unique> <script> <Plug>(csutil-l-find-e)
 nnoremap <unique> <script> <Plug>(csutil-l-find-f)
 \        :<C-u>call csutil#find('<cfile>', 'f', 'l')<CR>
 nnoremap <unique> <script> <Plug>(csutil-l-find-i)
-\        :<C-u>call csutil#find('<cfile>' 'i', 'l')<CR>
+\        :<C-u>call csutil#find('<cfile>', 'i', 'l')<CR>
+nnoremap <unique> <script> <Plug>(csutil-l-find-a)
+\        :<C-u>call csutil#find('<cfile>', 'a', 'l')<CR>
 
 if !exists('g:csutil_map_prefix')
     let g:csutil_map_prefix = '<C-\>'
