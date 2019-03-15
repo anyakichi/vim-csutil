@@ -5,7 +5,7 @@
 let s:cpo_save = &cpo
 set cpo&vim
 
-let s:csutil_dbdir = ""
+let s:csutil_db = ""
 
 function! s:execute(...)
     let cmd = join(a:000, ' ')
@@ -19,26 +19,27 @@ function! s:execute(...)
 endfunction
 
 function! csutil#setup()
-    let cscope_db = findfile("cscope.out", ".;")
-    let cscope_dbdir = cscope_db == '' ? '' : fnamemodify(cscope_db, ":p:h")
+    let cscope_file =
+    \    fnamemodify(&csprg, ":t") == 'gtags-cscope' ? "GTAGS" : "cscope.out"
+    let cscope_db = findfile(cscope_file, ".;")
 
-    if s:csutil_dbdir == cscope_dbdir
+    if s:csutil_db == cscope_db
 	return
     endif
 
     let csverb_save = &csverb
     set nocsverb
 
-    if s:csutil_dbdir != ''
-	execute 'cscope' 'kill' s:csutil_dbdir
+    if s:csutil_db != ''
+	execute 'cscope' 'kill' s:csutil_db
     endif
 
-    if cscope_dbdir != ''
-	execute 'cscope' 'add' cscope_dbdir . "/cscope.out" cscope_dbdir
+    if cscope_db != ''
+	execute 'cscope' 'add' cscope_db
     endif
 
     let &csverb = csverb_save
-    let s:csutil_dbdir = cscope_dbdir
+    let s:csutil_db = cscope_db
 endfunction
 
 function! csutil#find(expr, type, ...)
