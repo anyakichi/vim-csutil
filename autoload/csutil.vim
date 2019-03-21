@@ -23,6 +23,14 @@ function! csutil#setup()
     \    fnamemodify(&csprg, ":t") == 'gtags-cscope' ? "GTAGS" : "cscope.out"
     let cscope_db = findfile(cscope_file, ".;")
 
+    if !filereadable(cscope_db)
+        let cscope_db = ''
+    endif
+
+    if cscope_db != ''
+        let cscope_db = fnamemodify(cscope_db, ":p")
+    endif
+
     if s:csutil_db == cscope_db
         return
     endif
@@ -35,7 +43,11 @@ function! csutil#setup()
     endif
 
     if cscope_db != ''
-        execute 'cscope' 'add' cscope_db
+        let cscope_dir = fnamemodify(cscope_db, ":h")
+        let cwd = getcwd()
+        execute 'lcd' cscope_dir
+        execute 'cscope' 'add' cscope_db cscope_dir
+        execute 'lcd' cwd
     endif
 
     let &csverb = csverb_save
